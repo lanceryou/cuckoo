@@ -6,6 +6,7 @@ const (
 
 var (
 	_ Table = &singleTable{}
+	_ Table = &PackedTable{}
 )
 
 type Table interface {
