@@ -220,6 +220,7 @@ func (p *PackedTable) writeTag(i uint32, tags [4]uint32, sort bool) {
 	lowBits[1] = uint8(tags[1] & 0x0f)
 	lowBits[2] = uint8(tags[2] & 0x0f)
 	lowBits[3] = uint8(tags[3] & 0x0f)
+	codeword := p.perm.Encode(lowBits)
 
 	var highBits [4]uint32
 	highBits[0] = tags[0] & 0xfffffff0
@@ -227,7 +228,6 @@ func (p *PackedTable) writeTag(i uint32, tags [4]uint32, sort bool) {
 	highBits[2] = tags[2] & 0xfffffff0
 	highBits[3] = tags[3] & 0xfffffff0
 
-	codeword := p.perm.Encode(lowBits)
 	pos := (p.kBitsPerBucket * i) >> 3
 	if p.kBitsPerBucket == 16 {
 		// 1 dirbits per tag
