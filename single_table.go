@@ -146,7 +146,7 @@ func (t *singleTable) readTag(i, j uint32) uint32 {
 		tag = uint32(fp[pos]) | uint32(fp[pos+1])<<8
 	} else if t.bitsPerItem == 32 {
 		pos := j << 2
-		tag = uint32(fp[pos]) | uint32(fp[pos+1])<<8 | uint32(fp[pos+2])<<16 + uint32(fp[pos+3])<<24
+		tag = uint32(fp[pos]) | uint32(fp[pos+1])<<8 | uint32(fp[pos+2])<<16 | uint32(fp[pos+3])<<24
 	}
 
 	return tag & t.tagMask
